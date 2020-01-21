@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-ene-2020 10:32:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Categoria" table="CATEGORIA" schema="FOSTER" optimistic-lock="version">
+        <id name="id" type="short">
+            <column name="ID" precision="3" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="1024" />
+        </property>
+        <property name="guarnicion" type="string">
+            <column name="GUARNICION" length="1024" />
+        </property>
+        <set name="productos" table="PRODUCTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CATEGORIAID" precision="3" scale="0" />
+            </key>
+            <one-to-many class="pojos.Producto" />
+        </set>
+    </class>
+</hibernate-mapping>

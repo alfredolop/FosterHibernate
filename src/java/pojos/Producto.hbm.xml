@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-ene-2020 10:32:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Producto" table="PRODUCTO" schema="FOSTER" optimistic-lock="version">
+        <id name="id" type="short">
+            <column name="ID" precision="4" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categoria" class="pojos.Categoria" fetch="select">
+            <column name="CATEGORIAID" precision="3" scale="0" />
+        </many-to-one>
+        <property name="titulo" type="string">
+            <column name="TITULO" />
+        </property>
+        <property name="body" type="string">
+            <column name="BODY" length="1024" />
+        </property>
+        <property name="imagen" type="string">
+            <column name="IMAGEN" />
+        </property>
+        <property name="fondo" type="string">
+            <column name="FONDO" />
+        </property>
+        <property name="sumario" type="string">
+            <column name="SUMARIO" length="1024" />
+        </property>
+        <set name="puntos" table="PUNTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRODUCTO" precision="4" scale="0" />
+            </key>
+            <one-to-many class="pojos.Punto" />
+        </set>
+    </class>
+</hibernate-mapping>
